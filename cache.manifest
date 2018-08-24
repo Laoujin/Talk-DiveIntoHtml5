@@ -1,0 +1,23 @@
+CACHE MANIFEST
+# work with rev XX to indicate cached files have changed
+# rev 39
+
+CACHE:
+# do cache these files
+clock/clock.css
+clock/clock.js
+clock/clock-face.jpg
+
+NETWORK: 
+# Not cached and not available offline
+tracking.cgi
+
+CACHE:
+images/header.png
+
+FALLBACK:
+*.jpg images/missing.png
+/	  error.html
+
+NETWORK:
+*

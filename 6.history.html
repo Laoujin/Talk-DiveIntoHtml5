@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Contoso Times</title>
+    <link href="contoso.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            if (!(window.history && window.history.pushState)) { // Modernizr.history
+                alert("This browser doesn't support the history API");
+            }
+            else {
+                // Handle popstate events by refreshing the content on the page
+                window.addEventListener("popstate", function (e) {
+                    // Generate a URL from the history state
+					var state = ((e.state === null) ? "local" : e.state);
+                    var url = "contoso/" + state + ".txt";
+                    var query = window.location.search;
+
+                    // Load fresh article content from the "server"
+                    $("#article").load(url, function (e) {
+						$(".currentTopic").text(state);
+                        $(this).css("display", "none").fadeIn();
+                    });
+                });
+            }
+			
+            // Load article content from the "server", using the "topic"
+            // query string parameter, if present, to drive the content
+            var id = "local";
+            var query = window.location.search;
+            if (query !== "" && query.substring(0, 7).toLowerCase() === "?topic=") {
+                id = query.substring(7);
+            }
+
+            // Connect a click handler to all navigation hyperlinks
+            $("#leftnav ul li a").click(function (e) {
+                var id = $(this).attr("data-content");
+                var pageUrl = document.location.pathname + "?topic=" + id;
+                var serviceUrl = "contoso/" + id + ".txt";
+
+                // Fetch new content from the "server"
+                $("#article").load(serviceUrl, function (e) {
+                    $(this).css("display", "none").fadeIn();
+					$(".currentTopic").text(id);
+
+                    // Add a node to the browser history
+                    if (window.history && window.history.pushState) {
+                        history.pushState(id, null, pageUrl);
+						// parameters:
+						// state: Any JSON structure (here we pass the topic id)
+						// title: Any string. Set the page title yourself. This isn't supported...
+						// url
+					}
+                });
+
+                // Prevent navigation
+                e.preventDefault();
+            });
+        });
+    </script>
+</head>
+<body>
+
+<!-- DATE AND TRADEMARK -->
+<header id="trademark">
+    <div id="leftheader">
+        UPDATED <time id="today" pubdate>Mon 19 March</time>
+    </div>
+    <div id="rightheader">
+        <h1>CONTOSO TIMES, SINCE 1911</h1>
+    </div>
+</header>
+
+<!-- BANNER -->
+<header id="banner">
+    <div id="leftbanner">
+        <img id="getthescoop" src="banner_ad.gif" alt="" />
+    </div>
+    <div id="rightbanner">
+        <img src="banner_logo.gif" alt="" />
+    </div>
+</header>
+
+<!-- TOP BREADCRUMBS -->
+<div id="topbreadcrumbscontainer">
+    <nav id="topbreadcrumbs">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Members Only</a></li>
+            <li><a href="#" class="currentTopic">Local</a></li>
+        </ul>
+    </nav>
+
+    <div id="login"><a href="#" id="loginlink">Login</a></div>
+</div>
+
+<!-- MAIN BODY -->
+<div id="mainbody">
+    <nav id="leftnav">
+        <ul>
+            <li class="navheading">News</li>
+            <li class="navitem"><a href="#" data-content="local">Local</a></li>
+            <li class="navitem"><a href="#" data-content="national">National</a></li>
+            <li class="navitem"><a href="#" data-content="world">World</a></li>
+            <li class="navheading">Sports</li>
+            <li class="navitem"><a href="#" data-content="baseball">Baseball</a></li>
+            <li class="navitem"><a href="#" data-content="basketball">Basketball</a></li>
+            <li class="navitem"><a href="#" data-content="football">Football</a></li>
+            <li class="navitem"><a href="#" data-content="soccer">Soccer</a></li>
+            <li class="navheading">Members Only</li>
+            <li class="navitem"><a href="#" data-content="travel">Travel</a></li>
+            <li class="navitem"><a href="#" data-content="entertainment">Entertainment</a></li>
+            <li class="navitem"><a href="#" data-content="technology">Technology</a></li>
+        </ul>
+    </nav>
+
+    <article id="article">
+        <!-- Content added dynamically -->
+    </article>
+</div>
+
+<!-- BOTTOM BREADCRUMBS -->
+<nav id="bottombreadcrumbs">
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Members Only</a></li>
+		<li><a href="#" class="currentTopic">Local</a></li>
+    </ul>
+</nav>
+
+<!-- FOOTER -->
+<footer>
+    &copy; 2011 Contoso Times. All rights reserved <br />
+    <a href="#">contact us</a> | <a href="7.webworkers.html">Moving on..</a>
+</footer>
+
+</body>
+</html>

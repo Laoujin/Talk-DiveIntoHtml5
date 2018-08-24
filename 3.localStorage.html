@@ -1,0 +1,101 @@
+<!DOCTYPE html />
+<html>
+<head>
+    <meta charset="utf-8" />
+	<script type="text/javascript" src="modernizr.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script>
+	$(function() {
+		// Detection:
+		function supports_html5_storage() { 
+			try { 
+				return 'localStorage' in window && window['localStorage'] !== null;
+			}
+			catch (e) { return false; }
+		}
+		//if (Modernizr.localstorage){}
+	
+		var doAlert = false;
+	
+		// Usage/Example
+		$("#AddValue").click(function() {
+			localStorage[$("#key").val()] = $("#value").val();
+			if (doAlert) alert("added");
+		});
+		
+		$("#RemoveValue").click(function() {
+			localStorage.removeItem($("#key").val());
+			if (doAlert) alert("removed");
+		});
+		
+		$("#ClearAll").click(function() {
+			localStorage.clear();
+			if (doAlert) alert("cleared");
+		});
+		
+		$("#PrintAll").click(function() {
+			var i, keyValues = "Key/Values in Storage: " + localStorage.length + "<br>";
+			for (i = 0; i < localStorage.length; i++) {
+				keyValues += localStorage.key(i) + " => ";
+				keyValues += localStorage[localStorage.key(i)];
+				keyValues += "<br>";
+			}
+			
+			$("#allValues").html(keyValues);
+		});
+	
+		if (window.addEventListener) {
+		  window.addEventListener("storage", handle_storage, false);
+		} else {
+		  window.attachEvent("onstorage", handle_storage);
+		};
+		
+		function handle_storage(e) {
+			if (!e) { e = window.event; }
+			
+			var changed = "";
+			changed += "key: " + e.key + "<br>";
+			changed += "oldValue: " + e.oldValue + "<br>";
+			changed += "newValue: " + e.newValue + "<br>";
+			changed += "" + (e.url ? "url: " + e.url : "uri: " + e.uri) + "<br>";
+			
+			$("#changeTracker").html(changed);
+		}
+	});
+	</script>
+	
+	<style>
+	body {
+		text-align: center;
+	}
+	</style>
+</head>
+<body>
+
+<div id=adding>
+	<h1>localStorage Manipulation</h1>
+	<input type=text id=key /><br>
+	<input type=text id=value /><br>
+	<input type=button id="AddValue" value="Add to storage"> &nbsp;
+	<input type=button id="RemoveValue" value="Remove key from storage"><br><br>
+	<input type=button id="ClearAll" value="Clear storage">
+</div>
+
+<div>
+	<h2><a href="http://sangu.be/test/3.localStorage.html" target=_blank>localStorage changes</a></h2>
+	<div id="changeTracker"></div>
+</div>
+
+<div>
+	<h1>Print all values</h1>
+	<input type=button id=PrintAll value="Print all values"><br>
+	<div id="allValues">
+	
+	</div>
+</div>
+
+<div style="text-align: right">
+	<a href="5.geolocation.html">Geolocation</a>
+</div>
+</body>
+</html>

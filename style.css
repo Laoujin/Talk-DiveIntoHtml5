@@ -1,0 +1,73 @@
+article,aside,figure,footer,header,hgroup,nav,section{display:block}
+
+html {
+	background:white;
+	color:black
+}
+
+body {
+	font: 'Verdana';
+	padding:0;
+	margin:0 auto;
+	width:40em;
+	line-height:1.75;
+	word-spacing:0.1em
+}
+
+/* Display ul horizontally */
+nav ul{margin:0;padding:0 1em 0 0;text-align:center}
+nav li{display:inline;padding-left:1em}
+
+header {
+	background:black;
+	color:white;
+	margin:0;
+	padding:1.75em 0
+}
+
+a{background:transparent;text-decoration:none;border-bottom:1px dotted}
+a:hover{border-bottom:1px solid}
+a:link{color:#1b67c9}
+a:visited{color:darkorchid}
+a.simple{border:0 !important;float:left;display:block;margin-right:20px}
+
+h1 a{color:inherit !important}
+h2,p{margin:1.75em 0;font-weight:normal}
+h1,h2{font-size:medium}
+
+nav a:link{color:white}
+nav a:visited{color:white}
+
+h1{letter-spacing:1em;text-align:center;margin:0}
+h2{text-align:center;font-size:medium;line-height:2.154}
+
+article header,section header{background:white;color:black;margin:0;padding:0}
+article h1,section h1{letter-spacing:0;text-align:left;margin:1.75em 0}
+
+aside {
+	width: 255px;
+	text-align: center;
+	font-size: 25px;
+	line-height: 30px;
+	border: 1px solid black;
+	float: right;
+	margin: 10px 0 30px 30px;
+	padding-top: 20px;
+	background: #cccccc;
+	height: 75px;
+	font-style: italic;
+}
+
+footer {
+	background:black;
+	text-align:center;
+	clear:both
+}
+
+time {
+	float:right;
+	font-size:small;
+	margin:2px 0 0 0
+}
+
+

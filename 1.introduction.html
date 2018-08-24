@@ -1,0 +1,102 @@
+<!DOCTYPE html
+          PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Dive into HTML5</title>
+	<link rel="shortcut icon" href="favicon.png" />
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="modernizr.js"></script>
+
+	<!--[if lt IE 9]>
+	<script>
+	  var e = ("abbr,article,aside,audio,canvas,datalist,details," +
+		"figure,footer,header,hgroup,mark,menu,meter,nav,output," +
+		"progress,section,time,video").split(',');
+	  for (var i = 0; i < e.length; i++) {
+		document.createElement(e[i]);
+	  }
+	</script>
+	<![endif]-->
+</head>
+<body>
+
+<header>
+	<hgroup>
+		<h1>AC Partners</h1>
+		<h2>HTML5 Elements Sample</h2>
+	</hgroup>
+	
+	<nav>
+	  <!--<a href="#" id="skipLink">Skip Navigation Link</a>-->
+	  <ul>
+		<li><a href="#">home</a></li>
+		<li><a href="#">blog</a></li>
+		<li><a href="#">gallery</a></li>
+		<li><a href="#">about</a></li>
+	  </ul>
+	</nav>
+</header>
+
+<!-- All articles could be grouped inside a 'section' -->
+<article>
+  <header>
+    <time datetime="2013-03-18" pubdate="pubdate">18 maart 2013</time>
+    <h1>
+      <a href="#">New article!</a>
+    </h1>
+  </header>
+  <p>
+	<aside>Your related advertisement</aside>
+	This is an article. It has a &lt;header&gt; tag which contains a &lt;time&gt; 
+	and a &lt;h1&gt; header.<br>
+	This content is just in a regular &lt;p&gt;.
+	<br> There is also an &lt;aside&gt; for the advertisement, quote, ...
+  </p>
+</article>
+
+<article>
+  <header>
+    <time datetime="2013-03-17" pubdate="pubdate">17 maart 2013</time>
+    <h1>
+      <a href="#">Second article!</a>
+    </h1>
+  </header>
+  <p>
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec massa metus, malesuada a condimentum vel, sagittis et nisi. Suspendisse nulla metus, porttitor non lobortis sit amet, venenatis sit amet nisl. Vivamus massa ligula, malesuada in luctus ac, lacinia id sapien. Integer at dui orci, a consectetur ipsum. In hac habitasse platea dictumst. Nunc vitae lectus quis magna bibendum interdum sit amet consectetur magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in lectus augue, eu rhoncus nunc.
+  </p>
+</article>
+
+<article>
+  <header>
+    <time datetime="2013-01-01" pubdate="pubdate">New Year 2013</time>
+    <h1>
+      <a href="#">Happy New Year everyone!</a>
+    </h1>
+  </header>
+  <p>
+	Things to do this year:<br>
+	<ul>
+		<li>Have fun</li>
+		<li>Learn HTML5</li>
+		<li>Get rich</li>
+	</ul>
+  </p>
+</article>
+
+<footer>
+  <nav>
+	<ul>
+	  <li><a href="#">Contact us</a></li>
+	  <li><a href="#">Credits</a></li>
+	  <li><a href="2.Forms.html">Moving on...</li>
+	 </ul>
+  </nav>
+</footer>
+
+</body>
+</html>

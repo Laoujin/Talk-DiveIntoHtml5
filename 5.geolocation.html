@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- http://sangu.be/test/5.geolocation.html -->
+    <meta charset="utf-8" />
+
+    <style type="text/css">
+    body {
+        margin: 0;
+        background-color: #404040;
+    }
+    #map { 
+	    position: absolute;
+        top: 50px;
+        left: 250px;
+        width: 800px;
+        height: 600px;
+    }
+	
+	#output {
+		border: 1px solid black;
+		position: absolute; 
+		width: 200px; 
+		height: 300px; 
+		color: white;
+	}
+    </style>
+
+    <script charset="UTF-8" type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0">
+    </script>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+    <script type="text/javascript">
+        var _map;
+
+        $(function () {
+            // Create a Bing map
+            _map = new Microsoft.Maps.Map(document.getElementById("map"),
+                { credentials: "Ak3Sjc32qVKfI0CiNObHGFEuq_fIeN4kq2zzjNDEqbu9Gmjpbj7bN3wkmCZvas8C" });
+
+            // Get the current position from the browser
+            if (!navigator.geolocation) // or: Modernizr.geolocation
+                alert("This browser doesn't support geolocation");
+            else
+                navigator.geolocation.getCurrentPosition(onPositionReady, onError);
+				// Third property: "PositionOptions" object
+				// enableHighAccuracy (bool) - iPhone, Android, ...
+				// timeout (long in ms)
+				// maximumAge (long in ms)
+				
+				// var watchId = watchPosition(...)
+				// -> Same parameters
+				// -> Works like setInterval/clearInterval
+				// -> Will be called whenever the user's location changes
+				// -> clearWatch(watchId) when done
+        });
+
+        function onPositionReady(position) {
+            // Apply the position to the map
+            var location = new Microsoft.Maps.Location(position.coords.latitude, position.coords.longitude);
+            _map.setView({ zoom: 18, center: location });
+
+            // Add a pushpin to the map representing the current location
+            var pin = new Microsoft.Maps.Pushpin(location);
+            _map.entities.push(pin);
+			
+			// Check available data
+			document.getElementById("Latitude").innerHTML = position.coords.latitude;
+            document.getElementById("Longitude").innerHTML = position.coords.longitude;
+            document.getElementById("Altitude").innerHTML = position.coords.altitude;
+            document.getElementById("Accuracy").innerHTML = position.coords.accuracy;
+            document.getElementById("AltitudeAccuracy").innerHTML = position.coords.altitudeAccuracy;
+            document.getElementById("Heading").innerHTML = position.coords.heading;
+            document.getElementById("Speed").innerHTML = position.coords.speed;
+        }
+
+        function onError(err) {
+            switch (err.code) {
+				// err.message: DOMString - not intended for end users
+
+                case 0:
+                    alert("Unknown error");
+                    break;
+
+                case 1:
+                    alert("The user said no!");
+                    break;
+
+                case 2:
+                    alert("Location data unavailable");
+                    break;
+
+                case 3:
+                    alert("Location request timed out");
+                    break;
+            }
+        }
+    </script>
+</head>
+
+<body>
+	<div id="map"></div>
+	
+	<div>
+	<table id="output">
+		<tr>
+			<td>Latitude *</td>
+			<td id="Latitude"></td>
+		</tr>
+		<tr>
+			<td>Longitude * </td>
+			<td id="Longitude"></td>
+		</tr>
+		<tr>
+			<td>Altitude</td>
+			<td id="Altitude"></td>
+		</tr>
+		<tr>
+			<td>Accuracy *</td>
+			<td id="Accuracy"></td>
+		</tr>
+		<tr>
+			<td>Altitude Accuracy</td>
+			<td id="AltitudeAccuracy"></td>
+		</tr>
+		<tr>
+			<td>Heading</td>
+			<td id="Heading"></td>
+		</tr>
+		<tr>
+			<td>Speed</td>
+			<td id="Speed"></td>
+		</tr>
+		<tr>
+			<td colspan=2>
+				<a href="6.history.html">history API</a>
+			</td>
+		</tr>
+	</table>
+	</div>
+</body>
+</html>

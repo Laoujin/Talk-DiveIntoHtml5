@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Microdata</title>
+	<link rel="shortcut icon" href="favicon.png" />
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="modernizr.js"></script>
+
+	<!--[if lt IE 9]>
+	<script>
+	  var e = ("abbr,article,aside,audio,canvas,datalist,details," +
+		"figure,footer,header,hgroup,mark,menu,meter,nav,output," +
+		"progress,section,time,video").split(',');
+	  for (var i = 0; i < e.length; i++) {
+		document.createElement(e[i]);
+	  }
+	</script>
+	<![endif]-->
+</head>
+<body>
+
+<header>
+	<hgroup>
+		<h1>AC Partners</h1>
+		<h2>HTML5 Elements Sample</h2>
+	</hgroup>
+	
+	<nav>
+	  <!--<a href="#" id="skipLink">Skip Navigation Link</a>-->
+	  <ul>
+		<li><a href="#">home</a></li>
+		<li><a href="#">blog</a></li>
+		<li><a href="#">gallery</a></li>
+		<li><a href="#">about</a></li>
+	  </ul>
+	</nav>
+</header>
+
+<!-- All articles could be grouped inside a 'section' -->
+<article>
+  <header>
+    <time datetime="2013-03-18" pubdate="pubdate">18 maart 2013</time>
+    <h1>
+      <a href="#">Microdata for the win</a>
+    </h1>
+  </header>
+  <p itemscope itemtype="http://schema.org/Person">
+	Hello, my name is 
+	<span itemprop="name">John Doe</span>, 
+	I am a 
+	<span itemprop="jobTitle">graduate research assistant</span> 
+	at the 
+	<span itemprop="affiliation">University of Dreams</span>. 
+	My friends call me 
+	<span itemprop="additionalName">Johnny</span>. 
+	You can visit my homepage at 
+	<a href="http://www.JohnnyD.com" itemprop="url">www.JohnnyD.com</a>. 
+	<section itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+			I live at 
+			<span itemprop="streetAddress">1234 Peach Drive</span>,
+			<span itemprop="addressLocality">Warner Robins</span>,
+			<span itemprop="addressRegion">Georgia</span>.
+	</section>
+	<a href="http://www.google.com/webmasters/tools/richsnippets" target=_blank>Test it!</a>
+  </p>
+</article>
+
+<article>
+  <header>
+    <time datetime="2013-03-17" pubdate="pubdate">17 maart 2013</time>
+    <h1>
+      <a href="#">Check this movie!</a>
+    </h1>
+  </header>
+  <p>
+	<div itemscope itemtype ="http://schema.org/Movie">
+	  <h1 itemprop="name">Avatar</h1>
+	  <div itemprop="director" itemscope itemtype="http://schema.org/Person">
+		Director: <span itemprop="name">James Cameron</span> 
+		(born <span itemprop="birthDate">August 16, 1954)</span>
+	  </div>
+	  <span itemprop="genre">Science fiction</span>
+	  <a href="trailer.html" itemprop="trailer">See Trailer</a>
+	</div>
+  </p>
+</article>
+
+<article>
+  <header>
+    <time datetime="2013-01-01" pubdate="pubdate">New Year 2013</time>
+    <h1>
+      <a href="#">Happy New Year everyone!</a>
+    </h1>
+  </header>
+  <p>
+	Things to do this year:<br>
+	<ul>
+		<li>Have fun</li>
+		<li>Learn HTML5</li>
+		<li>Get rich</li>
+	</ul>
+  </p>
+</article>
+
+<footer>
+  <nav>
+	<ul>
+	  <li><a href="#">Contact us</a></li>
+	  <li><a href="#">Credits</a></li>
+	  <li><a href="9.canvas.html">Moving on...</li>
+	 </ul>
+  </nav>
+</footer>
+
+</body>
+</html>

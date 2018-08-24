@@ -1,0 +1,156 @@
+<!DOCTYPE html />
+<html>
+<head>
+    <meta charset="utf-8" />
+	<script type="text/javascript" src="modernizr.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <style type="text/css">
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        form {
+            width: 300px;
+            margin: 20px auto;
+        }
+
+        input[type="color"],
+		input[type="email"],
+		input[type="range"],
+		input[type="number"],
+		input[type="text"],
+		input[type="url"],
+		input[type="time"],
+		input[type="datetime"],
+		input[type="datetime-local"],
+		input[type="week"],
+		input[type="month"] {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            border: 1px solid #ccc;
+            font-size: 20px;
+            width: 300px;
+            min-height: 30px;
+            display: block;
+            margin-bottom: 15px;
+            margin-top: 5px;
+            outline: none;
+
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -o-border-radius: 4px;
+            -ms-border-radius: 4px;
+            border-radius: 4px;
+        }
+		
+		input[type='date'] {
+			margin-bottom: 15px;
+            margin-top: 5px;
+		}
+
+        input:invalid { 
+            border-color: #e88;
+            -webkit-box-shadow: 0 0 5px rgba(255, 0, 0, .8);
+            -moz-box-shadow: 0 0 5px rgba(255, 0, 0, .8);
+            -o-box-shadow: 0 0 5px rgba(255, 0, 0, .8);
+            -ms-box-shadow: 0 0 5px rgba(255, 0, 0, .8);
+            box-shadow:0 0 5px rgba(255, 0, 0, .8);
+        }
+
+        input:required {
+            border-color: #88a;
+            -webkit-box-shadow: 0 0 5px rgba(0, 0, 255, .5);
+            -moz-box-shadow: 0 0 5px rgba(0, 0, 255, .5);
+            -o-box-shadow: 0 0 5px rgba(0, 0, 255, .5);
+            -ms-box-shadow: 0 0 5px rgba(0, 0, 255, .5);
+            box-shadow: 0 0 5px rgba(0, 0, 255, .5);
+        }
+
+        input[type=submit] {
+            background: none;
+            padding: 10px;
+        }
+		
+		footer {
+			text-align: right;
+		}
+    </style>
+
+    <script>
+        $(function () {
+		
+			$("#checksupport").bind("mousedown", function(e) {
+				alert("noes");
+				if (e.which == 2) {
+					alert("yupla");
+				}
+			});
+		
+		
+			// Custom client validation
+            /*$("#email_addr_repeat").change(function (e) {
+                var email1 = document.getElementById("email_addr");
+                var email2 = document.getElementById("email_addr_repeat");
+
+                if (email1.value !== email2.value) {
+                    email2.setCustomValidity("The two e-mail addresses must match");
+                }
+                else {
+                    email2.setCustomValidity("");
+                }
+            });*/
+			
+			// Autofocus fallback
+			if (!("autofocus" in document.createElement("input"))) {
+			  document.getElementById("full_name").focus();
+			}
+			
+			// Add text whether stuff is supported
+			$("form label[class]").each(function(value, key) {
+				if (Modernizr.inputtypes[$(this).attr("class")] || Modernizr.input[$(this).attr("class")]) {
+					$(this).html($(this).text() + " <font size=-2>("+$(this).attr("class")+" supported!)</font>");
+				} else {
+					$(this).html($(this).text() + " <font size=-2>("+$(this).attr("class")+" NOT supported!)</font>");
+				}
+			});
+			
+			
+			$("#CurrentRangeValue").click(function() {
+				alert(document.getElementById("guests").valueAsNumber);
+			});
+		});
+    </script>
+</head>
+
+<body>
+    <form>
+        <label class="required">Name</label>
+        <input type="text" id="full_name" name="full_name" placeholder="Jane Doe" required autofocus />
+
+        <label class="email">E-mail address</label>
+        <input type="email" id="email_addr" name="email_addr" />
+
+        <label class="color">Room color</label>
+        <input type="color" id="room_color" name="room_color" />
+
+        <label class="date">Arrival date</label>
+        <input type="date" id="arrival_dt" name="arrival_dt" />
+  
+        <br><label class="number">Number of nights</label>
+		<!-- There is also a "step" attribute -->
+        <input type="number" id="nights" name="nights" value="1" min="1" max="30" />
+
+        <label class="range">Number of guests</label> <input type="button" id="CurrentRangeValue" value="Value?">
+        <input type="range" id="guests" name="guests" value="1" min="1" max="20" />
+
+        <label class="pattern">Promo code (6 chars)</label>
+        <input type="text" id="promo" name="promo" pattern="[A-Za-z0-9]{6}" title="Promo codes consist of 6 alphanumeric characters" />
+
+        <input type="submit" value="Submit Reservation" /> 
+    </form>
+	
+	<footer>
+		<a href="http://miketaylr.com/code/input-type-attr.html" id=checksupport>Check support</a><br>
+		<a href="3.localStorage.html">More...</a>
+	</footer>
+</body>
+</html>

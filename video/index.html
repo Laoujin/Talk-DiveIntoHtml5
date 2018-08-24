@@ -1,0 +1,71 @@
+<!DOCTYPE html>  
+<HTML>
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<head>  
+<title>volvo</title>  
+<meta  name="VOLVO" content="HTML5,CSS3,JavaScript" charset="utf-8">  
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+
+<!-- jmeEmbed - plugin -->
+		<!-- configure path to swf-fallback: script.jwPlayer[src] -->
+		<script class="jwPlayer" type="application/swf" src="jmedia/player.swf"></script>
+		<!-- include jme-script (only cross-browser embed functionality) -->
+		<script src="jmedia/mm.embed.min.js"></script>
+		<!-- END: jmeEmbed - plugin -->
+
+<script>
+			$(function(){
+				//initialize cross-browser HTML-Video-Tag
+				$('video, audio').jmeEmbed();
+			});
+		</script>
+		
+<style>
+			/* always set */
+			video,
+			audio {
+				display: block;
+			}
+			audio {
+				width: 328px;
+				height: 45px;
+			}
+			video {
+				width: 600px;
+				height: 400px;
+			}
+			
+			/* additional style */
+			video {
+				float: left;
+				margin: 0 10px 5px 0;
+				background: #000;
+			}
+		</style>
+</head>
+<body>
+ <img  src="img/bg.jpg" id="bg" /> 
+<div id="wrapper">
+<h1><b>&nbsp;</b></h1>
+<video poster="videos/video.jpg" controls="controls" preload="none">
+			<!--<source src="media/bbb_trailer_mobile.m4v" />  m4v en ogv -->
+			<source src="videos/video.mp4" />
+			<source src="videos/video.ogg" />
+		</video>
+
+<!--<video width="640" height="360" poster="videos/video.jpg" controls autoplay>
+  <source src="videos/video.mp4" type="video/mp4">
+  <source src="videos/video.ogv" type="video/ogg">
+  <source src="videos/video.webm" type="video/webm">
+  <object data="videos/video.mp4" width="640" height="360">
+    <embed src="videos/video.mp4" width="640" height="360">
+  </object> 
+</video>-->
+<br><a href = "videos/video.mp4" target="_blank">Download file</a>
+</div>
+</body>
+</html>
